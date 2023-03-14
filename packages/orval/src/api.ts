@@ -50,6 +50,12 @@ export const getApiBuilder = async ({
         };
       }
 
+      if (resolvedVerbs.parameters) {
+        throw new Error(
+          `Please ensure that all parameters are defined inside the operation level - Check the spec at path ${pathRoute}`,
+        );
+      }
+
       let verbsOptions = await generateVerbsOptions({
         verbs: resolvedVerbs,
         output,
